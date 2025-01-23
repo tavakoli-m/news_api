@@ -24,3 +24,8 @@ Route::prefix('comment')->controller(\App\Http\Controllers\Comment\CommentContro
     Route::get('/list', 'index');
     Route::get('/toggle-status/{comment}', 'toggleStatus');
 });
+
+Route::prefix('user')->controller(\App\Http\Controllers\User\UserController::class)->group(function () {
+    Route::get('/list', 'index');
+    Route::get('/toggle-role/{user}', 'toggleRole');
+});
