@@ -12,8 +12,18 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->api(
+            prepend: [
+                \App\Http\Middleware\AddAuthCookieToHeaders::class
+            ]
+        );
+
+        $middleware->alias([
+            'admin' => \App\Http\Middleware\AdminMiddleware::class
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
+        $exceptions->render(function (\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $ex) {
+            return \App\Services\ApiResponse\ApiResponse::withStatus(404)->withMessage('not found !!')->send();
+        });
     })->create();
