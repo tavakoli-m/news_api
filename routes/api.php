@@ -29,3 +29,14 @@ Route::prefix('user')->controller(\App\Http\Controllers\User\UserController::cla
     Route::get('/list', 'index');
     Route::get('/toggle-role/{user}', 'toggleRole');
 });
+
+
+Route::prefix('post')->controller(\App\Http\Controllers\Post\PostController::class)->group(function () {
+    Route::get('/list', 'index');
+    Route::get('/{post}', 'show');
+    Route::get('/toggle-selected/{post}', 'toggleSelected');
+    Route::get('/toggle-breaking-news/{post}', 'toggleBreakingNews');
+    Route::post('/new', 'store');
+    Route::put('/update/{post}', 'update');
+    Route::delete('/delete/{post}', 'destroy');
+});
