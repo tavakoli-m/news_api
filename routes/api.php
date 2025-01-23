@@ -18,3 +18,9 @@ Route::prefix('banner')->controller(\App\Http\Controllers\Banner\BannerControlle
     Route::put('/update/{banner}', 'update');
     Route::delete('/delete/{banner}', 'destroy');
 });
+
+
+Route::prefix('comment')->controller(\App\Http\Controllers\Comment\CommentController::class)->group(function () {
+    Route::get('/list', 'index');
+    Route::get('/toggle-status/{comment}', 'toggleStatus');
+});
