@@ -43,11 +43,11 @@ class ImageService extends ImageToolsService
         $this->setImage($image);
 
         //set directory
-        $this->getImageDirectory() ?? $this->setImageDirectory(ImageService . phpdate("Y") . DIRECTORY_SEPARATOR . date('m') . DIRECTORY_SEPARATOR . date('d'));
+            $this->getImageDirectory() ?? $this->setImageDirectory(date("Y") . DIRECTORY_SEPARATOR . date('m') . DIRECTORY_SEPARATOR . date('d'));
         $this->setImageDirectory($this->getImageDirectory() . DIRECTORY_SEPARATOR . time());
 
         //set name
-        $this->getImageName() ?? $this->setImageName(time());
+            $this->getImageName() ?? $this->setImageName(time());
         $imageName = $this->getImageName();
 
         $indexArray = [];
